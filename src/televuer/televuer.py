@@ -202,6 +202,10 @@ class TeleVuer:
         if self.webrtc or self.display_mode == "pass-through":
             print("[TeleVuer] Warning: render_to_xr is ignored when webrtc is enabled or pass_through is True.")
             return
+        if hasattr(image, "bgr"):
+            image = image.bgr
+        if image is None:
+            return
         self.latest_frame = image
         self.new_frame_event.set()
 

@@ -143,6 +143,9 @@ class TeleData:
     head_pose: np.ndarray                  # (4,4) SE(3) pose of head matrix
     left_wrist_pose: np.ndarray            # (4,4) SE(3) pose of left wrist of arm
     right_wrist_pose: np.ndarray           # (4,4) SE(3) pose of right wrist of arm
+    head_valid: bool = True
+    left_wrist_valid: bool = True
+    right_wrist_valid: bool = True
     # hand tracking
     # https://docs.vuer.ai/en/latest/examples/19_hand_tracking.html
     # https://immersive-web.github.io/webxr-hand-input/
@@ -367,6 +370,9 @@ class TeleVuerWrapper:
                 head_pose=Brobot_world_head,
                 left_wrist_pose=left_IPunitree_Brobot_wrist_arm,
                 right_wrist_pose=right_IPunitree_Brobot_wrist_arm,
+                head_valid=head_pose_is_valid,
+                left_wrist_valid=left_arm_is_valid,
+                right_wrist_valid=right_arm_is_valid,
                 left_hand_pos=left_IPunitree_Brobot_arm_hand_pos,
                 right_hand_pos=right_IPunitree_Brobot_arm_hand_pos,
                 left_hand_rot=left_Brobot_arm_hand_rot,
@@ -413,6 +419,9 @@ class TeleVuerWrapper:
                 head_pose=Brobot_world_head,
                 left_wrist_pose=left_IPunitree_Brobot_wrist_arm,
                 right_wrist_pose=right_IPunitree_Brobot_wrist_arm,
+                head_valid=head_pose_is_valid,
+                left_wrist_valid=left_arm_is_valid,
+                right_wrist_valid=right_arm_is_valid,
                 left_ctrl_trigger=self.tvuer.left_ctrl_trigger,
                 left_ctrl_triggerValue=10.0 - self.tvuer.left_ctrl_triggerValue * 10,
                 left_ctrl_squeeze=self.tvuer.left_ctrl_squeeze,
